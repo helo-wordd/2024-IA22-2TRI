@@ -1,9 +1,9 @@
 # Iniciando um projeto Node.js com TypeScript
 
 - Abra o seu navegador de preferência, crie uma conta no https://github.com.
-- Crie um repositório utilizando o botão verde na parte esquerda da tela. Deixe o repositório público, e deixe a caixa "Add a README file" (adicionar um arquivo README) habilitada.
+- Crie um repositório utilizando o botão verde na parte esquerda da tela. Deixe o repositório público, e deixe a caixa `Add a README file` (adicionar um arquivo README) habilitada.
 - Agora, em seu computador, crie uma pasta para o projeto.
-- Abra o VS Code (Visual Studio Code) e pressione o botão "Clone Git Repository" (Clonar Repositório Git). Se o seu VS Code não possuir esta opção, atualize-o.
+- Abra o VS Code (Visual Studio Code) e pressione o botão `Clone Git Repository` (Clonar Repositório Git). Se o seu VS Code não possuir esta opção, atualize-o.
 - Vá até o seu navegador, copie (Ctrl+C) o endereço da página onde criou o repositório e cole (Ctrl+V) na caixa de texto na parte de cima da tela do VS Code.
 - Escolha a pasta que você criou como a pasta a ser utilizada para o projeto. Após isso, clique em Open para abrí-la.
 - Após ter aberto o projeto pelo VS Code, abre o terminal do VS Code, pressionando Ctrl e a tecla embaixo do esc (pode ser aspas ou outro botão, dependendo do teclado).
@@ -18,13 +18,13 @@ npx tsc --init
 mkdir src
 ```
 
-- Após isso, selecione a pasta src, clique com o botão direito do mouse e selecione "New File", que deve ser a primeira opção.
-- Nomeie este arquivo como "app.ts"
+- Após isso, selecione a pasta src, clique com o botão direito do mouse e selecione `New File`, que deve ser a primeira opção.
+- Nomeie este arquivo como `app.ts`
 
 ## Configuranado o `tsconfig.json`
 
 - Abra o arquivo tsconfig.json, que os comandos npm devem ter criado.
-- Selecione o texto do arquivo e pressione Ctrl+F. Isso irá abrir uma caixa de texto no canto superior direito da tela e você deve escrever "outDir". Selecione a linha inteira clicando nela com o botão esquerdo do mouse três vezes e apague-a.
+- Selecione o texto do arquivo e pressione Ctrl+F. Isso irá abrir uma caixa de texto no canto superior direito da tela e você deve escrever `"outDir"`. Selecione a linha inteira clicando nela com o botão esquerdo do mouse três vezes e apague-a.
 - Copie a caixa de texto seguinte e cole no lugar da linha apagada.
 
 ```json
@@ -33,7 +33,7 @@ mkdir src
 ```
 
 - Você pode apagar as linhas comentadas (as que possuem // no começo) mas isso não é necessário. Se você não as apagou, ignore-as.
-- Seu arquivo tsconfig.json deve estar assim (Ignore a diferença do "target". Ele muda dependendo da versão de javascript instalada):
+- Seu arquivo tsconfig.json deve estar assim (Ignore a diferença do `"target"`. Ele muda dependendo da versão de javascript instalada):
 
 ```json
 {
@@ -52,17 +52,15 @@ mkdir src
 
 ## Configurando o `package.json`
 
-Adicione o seguinte script ao seu `package.json`
+- Embaixo da linha `"scripts"`, coloque uma vírgula no final da linha `"test"` e adicione esta linha:
 
 ```json
-"scripts": {
   "dev": "npx nodemon src/app.ts"
-}
 ```
 
 ## Criando arquivo inicial do servidor
 
-Adicione o seguinte código ao arquivo `src/app.ts`
+- Adicione o seguinte código ao arquivo `app.ts`:
 
 ```typescript
 import express from 'express';
@@ -85,12 +83,14 @@ app.listen(port, () => {
 
 ## Inicializando o servidor
 
+- Execute o comando seguinte no terminal do VS Code:
+
 ```bash
 npm run dev
 ```
 
-Se tudo ocorrer bem, você verá a mensagem `Server running on port 3333` no terminal.
+- Se tudo ocorrer bem, você verá a mensagem `Server running on port 3333` no terminal.
 
 ## Testando o servidor
 
-Abra o navegador e acesse `http://localhost:3333`, você verá a mensagem `Hello World`.
+- Abra o navegador e acesse `http://localhost:3333`, você deve ver a mensagem `Hello World` no canto superior esquerdo da tela.
