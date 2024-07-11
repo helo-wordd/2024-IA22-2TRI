@@ -8,11 +8,7 @@
 - Escolha a pasta que você criou como a pasta a ser utilizada para o projeto. Após isso, clique em Open para abrí-la.
 - Após ter aberto o projeto pelo VS Code, abre o terminal do VS Code, pressionando Ctrl e a tecla embaixo do esc (pode ser aspas ou outro botão, dependendo do teclado).
 - Copie a caixa de texto abaixo utilizando o botão que parece dois quadrados, no canto superior direito da caixa.
-<<<<<<< HEAD
 - Cole o texto no terminal que apareceu na parte debaixo do VS Code e aperte enter. Isso irá executar os comandos, iniciando o npm, e instalando recursos necessários.
-=======
-- Cole o text no terminal que apareceu na parte debaixo do VS Code e aperte enter. Isso irá executar os comandos, iniciando o npm, e instalando recursos necessários.
->>>>>>> 723b393c12f638afe01b3c9c34bb576d4ed8f7a2
 
 ```bash
 npm init -y
