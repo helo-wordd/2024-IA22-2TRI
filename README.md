@@ -175,6 +175,8 @@ app.listen(port, () => {
 }
 ```
 
+- Após colar, aperte no botão ``Send Request`` que deve estar em cima do código.
+
 ## Listando os usuários
 
 - Adicione a rota `/users` ao servidor. Para fazer isso, copie e cole o seguinte código ao final do `app.ts`:
@@ -207,3 +209,34 @@ name	"John Doe"
 email	"lorem@ipsum.com"
 ```
 
+## Editando um usuário
+
+Adicione a rota `/users/:id` ao servidor.
+
+```typescript
+app.put('/users/:id', async (req, res) => {
+  const db = await connect();
+  const { name, email } = req.body;
+  const { id } = req.params;
+
+  await db.run('UPDATE users SET name = ?, email = ? WHERE id = ?', [name, email, id]);
+  const user = await db.get('SELECT * FROM users WHERE id = ?', [id]);
+
+  res.json(user);
+});
+```
+
+## Deletando um usuário
+
+Adicione a rota `/users/:id` ao servidor.
+
+```typescript
+app.delete('/users/:id', async (req, res) => {
+  const db = await connect();
+  const { id } = req.params;
+
+  await db.run('DELETE FROM users WHERE id = ?', [id]);
+
+  res.json({ message: 'User deleted' });
+});
+```
