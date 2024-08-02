@@ -169,6 +169,9 @@ app.listen(port, () => {
 - Copie e cole o seguinte código no arquivo `ts.http`:
 
 ```json
+POST http://localhost:3333/users
+Content-Type: application/json
+
 {
   "name": "John Doe",
   "email": "lorem@ipsum.com"
@@ -211,7 +214,8 @@ email	"lorem@ipsum.com"
 
 ## Editando um usuário
 
-Adicione a rota `/users/:id` ao servidor.
+- Adicione a rota `/users/:id` ao servidor.
+- Para isso, copie e cole o seguinte código no arquivo ``app.ts``:
 
 ```typescript
 app.put('/users/:id', async (req, res) => {
@@ -228,7 +232,8 @@ app.put('/users/:id', async (req, res) => {
 
 ## Deletando um usuário
 
-Adicione a rota `/users/:id` ao servidor.
+- Adicione a rota `/users/:id` ao servidor.
+- Para isso, copie e cole o seguinte código no arquivo ``app.ts``:
 
 ```typescript
 app.delete('/users/:id', async (req, res) => {

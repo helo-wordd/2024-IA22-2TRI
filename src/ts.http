@@ -2,6 +2,20 @@ POST http://localhost:3333/users
 Content-Type: application/json
 
 {
-    "name": "paulo",
-    "email": "paulo@efurry.com"
+    "name": "John Doe",
+    "email": "johndoe@mail.com"
 }
+
+###
+
+PUT http://localhost:3333/users/2
+Content-Type: application/json
+
+{
+    "name": "Teste Teste Teste",
+    "email": "teste@teste.tst"
+}
+
+###
+
+DELETE http://localhost:3333/users/4
