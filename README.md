@@ -262,7 +262,7 @@ Content-Type: application/json
 }
 ```
 
-Atualizando um Usuário (Como adicionar, mas troque id por um número)
+Atualizando um Usuário (Como adicionar, mas troque id para um número)
 ```http
 PUT http://localhost:3333/users/id
 Content-Type: application/json
