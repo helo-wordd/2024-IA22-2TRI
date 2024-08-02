@@ -245,3 +245,35 @@ app.delete('/users/:id', async (req, res) => {
   res.json({ message: 'User deleted' });
 });
 ```
+
+## Modificando o banco de dados
+
+- No arquivo ts.http, agora você pode modificar o banco de dados.
+- Separe com ``###`` para executá-los individualmente.
+
+Adicionando um Usuário (Troque "Nome" e "email@mail.com" para o nome e email que desejar)
+```http
+POST http://localhost:3333/users
+Content-Type: application/json
+
+{
+    "name": "Nome",
+    "email": "email@mail.com"
+}
+```
+
+Atualizando um Usuário (Como adicionar, mas troque id por um número)
+```http
+PUT http://localhost:3333/users/id
+Content-Type: application/json
+
+{
+    "name": "Nome",
+    "email": "email@mail.com"
+}
+```
+
+Removendo um Usuário (Troque id para um número)
+```http
+DELETE https://localhost:3333/users/id
+```

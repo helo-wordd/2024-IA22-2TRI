@@ -3,7 +3,8 @@ Content-Type: application/json
 
 {
     "name": "John Doe",
-    "email": "johndoe@mail.com"
+    "email": "johndoe@mail.com",
+    "senha": "123"
 }
 
 ###
@@ -18,4 +19,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3333/users/4
+DELETE http://localhost:3333/users/5
