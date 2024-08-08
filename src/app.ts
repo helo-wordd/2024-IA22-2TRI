@@ -7,10 +7,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+app.use(express.static(__dirname + '/../public'))
 
 app.post('/users', async (req, res) => {
   const db = await connect();

@@ -246,34 +246,119 @@ app.delete('/users/:id', async (req, res) => {
 });
 ```
 
-## Modificando o banco de dados
+## Adicionando html estático
 
-- No arquivo ts.http, agora você pode modificar o banco de dados.
-- Separe com ``###`` para executá-los individualmente.
+- Crie uma pasta chamada `public` no diretório principal (fora de `src`).
+- Crie um arquivo dentro da pasta `public` e chame-a de `index.html`.
+- Em `app.ts`, remova as linhas do primeiro `app.get`.
+- Após isso, adicione `app.use(express.static(__dirname + '/../public'))` após os outros `app.use`.
+- Isso irá enviar ao usuário todos os arquivos da pasta `public`.
+- Copie e cole o seguinte código no arquivo `index.html`:
 
-Adicionando um Usuário (Troque "Nome" e "email@mail.com" para o nome e email que desejar)
-```http
-POST http://localhost:3333/users
-Content-Type: application/json
+```HTML
+<!DOCTYPE html>
+<html lang="en">
 
-{
-    "name": "Nome",
-    "email": "email@mail.com"
-}
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form>
+    <input type="text" name="name" placeholder="Nome">
+    <input type="email" name="email" placeholder="Email">
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--  -->
+    </tbody>
+  </table>
+
+  <script>
+    // 
+    const form = document.querySelector('form')
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault()
+
+      const name = form.name.value
+      const email = form.email.value
+
+      await fetch('/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email })
+      })
+
+      form.reset()
+      fetchData()
+    })
+
+    // 
+    const tbody = document.querySelector('tbody')
+
+    async function fetchData() {
+      const resp = await fetch('/users')
+      const data = await resp.json()
+
+      tbody.innerHTML = ''
+
+      data.forEach(user => {
+        const tr = document.createElement('tr')
+        tr.innerHTML = `
+          <td>${user.id}</td>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
+          <td>
+            <button class="excluir">excluir</button>
+            <button class="editar">editar</button>
+          </td>
+        `
+
+        const btExcluir = tr.querySelector('button.excluir')
+        const btEditar = tr.querySelector('button.editar')
+
+        btExcluir.addEventListener('click', async () => {
+          await fetch(`/users/${user.id}`, { method: 'DELETE' })
+          tr.remove()
+        })
+
+        btEditar.addEventListener('click', async () => {
+          const name = prompt('Novo nome:', user.name)
+          const email = prompt('Novo email:', user.email)
+
+          await fetch(`/users/${user.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email })
+          })
+
+          fetchData()
+        })
+
+        tbody.appendChild(tr)
+      })
+    }
+
+    fetchData()
+  </script>
+</body>
+
+</html>
 ```
 
-Atualizando um Usuário (Como adicionar, mas troque id para um número)
-```http
-PUT http://localhost:3333/users/id
-Content-Type: application/json
+- Rode `npm run dev` e abra em um navegador o link `localhost:3333`.
+- Agora, você pode adicionar, editar e remover contas de usuários.
 
-{
-    "name": "Nome",
-    "email": "email@mail.com"
-}
-```
-
-Removendo um Usuário (Troque id para um número)
-```http
-DELETE https://localhost:3333/users/id
-```
