@@ -2,7 +2,7 @@
 
 - Escolha o nome que deseja para o seu projeto e crie uma pasta com este nome.
 - Abra o VS Code (Visual Studio Code). Escolha como pasta para o projeto a pasta que acabou de criar.
-- Instale `nodejs` em seu computador. Se já instalou isto, ou estiver em um dos computadores de um laboratório de informática do IFC, ignore este passo.
+- Instale `nodejs` em seu computador. Se já instalou isto ou estiver em um dos computadores de um laboratório de informática do IFC, ignore este passo.
 - Abra o terminal do VS Code.
 
 > *Geralmente, o terminal pode ser aberto pressionando `Ctrl + [tecla abaixo do esc]`. Se isto não funcinar, vá até o menu no canto superior esquerdo, clique em terminal (penúltima opção da esquerda para a direita) e abra um novo terminal.*
