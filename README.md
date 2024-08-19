@@ -1,14 +1,14 @@
-# Iniciando um projeto Node.js com TypeScript
+# Tutorial - Servidor Utilizando NodeJS
 
-- Abra o seu navegador de preferência, crie uma conta no https://github.com.
-- Crie um repositório utilizando o botão verde na parte esquerda da tela. Deixe o repositório público, e deixe a caixa `Add a README file` (adicionar um arquivo README) habilitada.
-- Agora, em seu computador, crie uma pasta para o projeto.
-- Abra o VS Code (Visual Studio Code) e pressione o botão `Clone Git Repository` (Clonar Repositório Git). Se o seu VS Code não possuir esta opção, atualize-o.
-- Vá até o seu navegador, copie (Ctrl+C) o endereço da página onde criou o repositório e cole (Ctrl+V) na caixa de texto na parte de cima da tela do VS Code.
-- Escolha a pasta que você criou como a pasta a ser utilizada para o projeto. Após isso, clique em Open para abrí-la.
-- Após ter aberto o projeto pelo VS Code, abre o terminal do VS Code, pressionando Ctrl e a tecla embaixo do esc (pode ser aspas ou outro botão, dependendo do teclado).
-- Copie a caixa de texto abaixo utilizando o botão que parece dois quadrados, no canto superior direito da caixa.
-- Cole o texto no terminal que apareceu na parte debaixo do VS Code e aperte enter. Isso irá executar os comandos, iniciando o npm, e instalando recursos necessários.
+- Escolha o nome que deseja para o seu projeto e crie uma pasta com este nome.
+- Abra o VS Code (Visual Studio Code). Escolha como pasta para o projeto a pasta que acabou de criar.
+- Instale `nodejs` em seu computador. Se já instalou isto, ou estiver em um dos computadores de um laboratório de informática do IFC, ignore este passo.
+- Abra o terminal do VS Code.
+
+> *Geralmente, o terminal pode ser aberto pressionando `Ctrl + [tecla abaixo do esc]`. Se isto não funcinar, vá até o menu no canto superior esquerdo, clique em terminal (penúltima opção da esquerda para a direita) e abra um novo terminal.*
+
+- Copie a caixa de texto abaixo utilizando o botão no canto superior direito da caixa. (o botão é similar a 2 quadrados)
+- Cole (Ctrl+V ou Ctrl+Shift+V) o texto no terminal que apareceu na parte inferior da janela do VS Code e aperte enter. Isso irá executar os comandos, iniciando o npm, e instalando recursos necessários.
 
 ```bash
 npm init -y
@@ -18,22 +18,14 @@ npx tsc --init
 mkdir src
 ```
 
-- Após isso, selecione a pasta src, clique com o botão direito do mouse e selecione `New File`, que deve ser a primeira opção.
+- Após isso, selecione a pasta src, clique com o botão direito do mouse e selecione `New File` ou `Novo Arquivo`, que deve ser a primeira opção.
 - Nomeie este arquivo como `app.ts`
 
-## Configuranado o `tsconfig.json`
+## Configurando `tsconfig.json`
 
 - Abra o arquivo tsconfig.json, que os comandos npm devem ter criado.
-- Selecione o texto do arquivo e pressione Ctrl+F. Isso irá abrir uma caixa de texto no canto superior direito da tela e você deve escrever `"outDir"`. Selecione a linha inteira clicando nela com o botão esquerdo do mouse três vezes e apague-a.
-- Copie a caixa de texto seguinte e cole no lugar da linha apagada.
-
-```json
-   "outDir": "./dist",
-   "rootDir": "./src",
-```
-
-- Você pode apagar as linhas comentadas (as que possuem // no começo) mas isso não é necessário. Se você não as apagou, ignore-as.
-- Seu arquivo tsconfig.json deve estar assim (Ignore a diferença do `"target"`. Ele muda dependendo da versão de javascript instalada):
+- Apague o texto neste arquivo (Ctrl + A; Delete)
+- Copie a seguinte caixa de texto e cole no arquivo `tsconfig.json`
 
 ```json
 {
@@ -50,17 +42,17 @@ mkdir src
 }
 ```
 
-## Configurando o `package.json`
+## Configurando `package.json`
 
-- Embaixo da linha `"scripts"`, coloque uma vírgula no final da linha `"test"` e adicione esta linha:
+- Dentro de `package.json`, embaixo da linha `"scripts"`, coloque uma vírgula no final da linha `"test"` e adicione a seguinte linha à linha abaixo de `"test"`:
 
 ```json
   "dev": "npx nodemon src/app.ts"
 ```
 
-## Criando arquivo inicial do servidor
+## Criando o Arquivo Inicial do Servidor
 
-- Adicione o seguinte código ao arquivo `app.ts`:
+- Copie e cole a seguinte caixa de texto dentro de `app.ts`:
 
 ```typescript
 import express from 'express';
@@ -81,21 +73,18 @@ app.listen(port, () => {
 });
 ```
 
-## Inicializando o servidor
+## Inicializando e Testando o Servidor
 
-- Execute o comando seguinte no terminal do VS Code:
+- Execute o seguinte comando no terminal do VS Code:
 
 ```bash
 npm run dev
 ```
 
 - Se tudo ocorrer bem, você verá a mensagem `Server running on port 3333` no terminal.
+- Abra o navegador que desejar e acesse o link `http://localhost:3333`, você deve ver a mensagem `Hello World` no canto superior esquerdo da tela.
 
-## Testando o servidor
-
-- Abra o navegador e acesse `http://localhost:3333`, você deve ver a mensagem `Hello World` no canto superior esquerdo da tela.
-
-## Configurando o banco de dados
+## Configurando o Banco de Dados
 
 - Crie um arquivo chamado `database.ts` dentro da pasta `src`.
 - Copie o seguinte código e cole dentro do arquivo `database.ts`:
@@ -127,7 +116,7 @@ export async function connect() {
 }
 ```
 
-## Adicionando o banco de dados ao servidor
+## Adicionando o Banco de Dados ao Servidor
 
 - Apague tudo dentro do arquivo `app.ts`.
 - Copie e cole o seguinte código ao `app.ts`:
@@ -142,10 +131,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+app.use(express.static(__dirname + '/../public'))
 
 app.post('/users', async (req, res) => {
   const db = await connect();
@@ -162,60 +148,9 @@ app.listen(port, () => {
 });
 ```
 
-## Inserindo dados
+## Editar e Remover Usuários
 
-- Instale a extensão `REST Client` no VS Code.
-- Crie uma pasta chamada `ts.http` dentro da pasta `src`.
-- Copie e cole o seguinte código no arquivo `ts.http`:
-
-```json
-POST http://localhost:3333/users
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "lorem@ipsum.com"
-}
-```
-
-- Após colar, aperte no botão ``Send Request`` que deve estar em cima do código.
-
-## Listando os usuários
-
-- Adicione a rota `/users` ao servidor. Para fazer isso, copie e cole o seguinte código ao final do `app.ts`:
-
-```typescript
-app.get('/users', async (req, res) => {
-  const db = await connect();
-  const users = await db.all('SELECT * FROM users');
-
-  res.json(users);
-});
-```
-
-## Testando a inserção de dados
-
-- Caso o servidor já esteja aberto, feche-o apertando `Ctrl+C`, pressionando `S` ou `Y`, e  `Enter`.
-- Para testar a inserção dos dados, execute o comando `npm run dev` para inicar o servidor.
-- Quando o servidor iniciar, vá até a pasta `ts.http` e clique no "Send Request" em cima do texto do arquivo.
-- Vá até o navegador e abra o website `http://localhost:3333/users`. O resultado deve ser:
-
-```html
-[{"id":1,"name":"John Doe","email":"lorem@ipsum.com"}]
-```
-
-- ou:
-
-```html
-id	1
-name	"John Doe"
-email	"lorem@ipsum.com"
-```
-
-## Editando um usuário
-
-- Adicione a rota `/users/:id` ao servidor.
-- Para isso, copie e cole o seguinte código no arquivo ``app.ts``:
+- Copie e cole o seguinte código ao final do arquivo `app.ts`:
 
 ```typescript
 app.put('/users/:id', async (req, res) => {
@@ -228,14 +163,7 @@ app.put('/users/:id', async (req, res) => {
 
   res.json(user);
 });
-```
 
-## Deletando um usuário
-
-- Adicione a rota `/users/:id` ao servidor.
-- Para isso, copie e cole o seguinte código no arquivo ``app.ts``:
-
-```typescript
 app.delete('/users/:id', async (req, res) => {
   const db = await connect();
   const { id } = req.params;
@@ -250,10 +178,7 @@ app.delete('/users/:id', async (req, res) => {
 
 - Crie uma pasta chamada `public` no diretório principal (fora de `src`).
 - Crie um arquivo dentro da pasta `public` e chame-a de `index.html`.
-- Em `app.ts`, remova as linhas do primeiro `app.get`.
-- Após isso, adicione `app.use(express.static(__dirname + '/../public'))` após os outros `app.use`.
-- Isso irá enviar ao usuário todos os arquivos da pasta `public`.
-- Copie e cole o seguinte código no arquivo `index.html`:
+- Copie e cole o seguinte código dentro do arquivo `index.html`:
 
 ```HTML
 <!DOCTYPE html>
@@ -359,6 +284,6 @@ app.delete('/users/:id', async (req, res) => {
 </html>
 ```
 
-- Rode `npm run dev` e abra em um navegador o link `localhost:3333`.
-- Agora, você pode adicionar, editar e remover contas de usuários.
+- Rode `npm run dev` em seu terminal e abra em um navegador o link `localhost:3333`.
+- Agora você pode adicionar, editar, e remover contas de usuários utilizando seu navegador.
 
