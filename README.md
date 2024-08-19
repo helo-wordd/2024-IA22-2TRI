@@ -180,7 +180,10 @@ app.delete('/users/:id', async (req, res) => {
 
 ## Adicionando html estático
 
-- Crie uma pasta chamada `public` no diretório principal (fora de `src`).
+- Crie uma pasta chamada `public` dentro do `diretório principal`.
+
+> *Para isto, basta apertar o botão direito do mouse na área limpa abaixo dos arquivos do projeto e selecionar `New Folder` ou `Nova Pasta`.*
+
 - Crie um arquivo dentro da pasta `public` e chame-a de `index.html`.
 - Copie e cole o seguinte código dentro do arquivo `index.html`:
 
@@ -191,7 +194,7 @@ app.delete('/users/:id', async (req, res) => {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Se ver isso, dê um bom dia pro Varela quando ele chegar perto :]</title>
 </head>
 
 <body>
@@ -288,6 +291,10 @@ app.delete('/users/:id', async (req, res) => {
 </html>
 ```
 
-- Rode `npm run dev` em seu terminal e abra em um navegador o link `localhost:3333`.
+> *Rode `npm run dev` no terminal do VS Code caso o servidor esteja fechado. Para fechar o servidor, basta apertar `Ctrl + C` enquanto o terminal estiver selecionado.*
+
+- Abra o link `http://localhost:3333` no navegador que desejar.
 - Agora você pode adicionar, editar, e remover contas de usuários utilizando seu navegador.
+
+>>>>>>>> # PARABENS!!!!!!! VOCE TERMINOU O TUTORIAL
 
