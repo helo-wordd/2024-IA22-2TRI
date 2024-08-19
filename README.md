@@ -67,32 +67,56 @@ mkdir src
 ```typescript
 import express from 'express';
 import cors from 'cors';
+import { connect } from './database';
 
 const port = 3333;
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname + '/../public'))
 
-app.get('/', (req, res) => {
-  res.send('Helo Wordd');
+app.post('/users', async (req, res) => {
+  const db = await connect();
+  const { name, email } = req.body;
+
+  const result = await db.run('INSERT INTO users (name, email) VALUES (?, ?)', [name, email]);
+  const user = await db.get('SELECT * FROM users WHERE id = ?', [result.lastID]);
+
+  res.json(user);
+});
+
+app.put('/users/:id', async (req, res) => {
+  const db = await connect();
+  const { name, email } = req.body;
+  const { id } = req.params;
+
+  await db.run('UPDATE users SET name = ?, email = ? WHERE id = ?', [name, email, id]);
+  const user = await db.get('SELECT * FROM users WHERE id = ?', [id]);
+
+  res.json(user);
+});
+
+app.delete('/users/:id', async (req, res) => {
+  const db = await connect();
+  const { id } = req.params;
+
+  await db.run('DELETE FROM users WHERE id = ?', [id]);
+
+  res.json({ message: 'User deleted' });
 });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+app.get('/users', async (req, res) => {
+  const db = await connect();
+  const users = await db.all('SELECT * FROM users');
+
+  res.json(users);
+});
 ```
-
-## Inicializando e Testando o Servidor
-
-- Execute o seguinte comando no terminal do VS Code:
-
-```bash
-npm run dev
-```
-
-- Se tudo ocorrer bem, você verá a mensagem `Server running on port 3333` no terminal.
-- Abra o navegador que desejar e acesse o link `http://localhost:3333`, você deve ver a mensagem `Helo Wordd` no canto superior esquerdo da tela.
 
 ## Configurando o Banco de Dados
 
@@ -124,58 +148,6 @@ export async function connect() {
   instance = db;
   return db;
 }
-```
-
-## Adicionando o Banco de Dados ao Servidor
-
-- Apague tudo dentro do arquivo `app.ts`.
-- Copie e cole o seguinte código ao `app.ts`:
-
-```typescript
-import express from 'express';
-import cors from 'cors';
-import { connect } from './database';
-
-const port = 3333;
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-app.use(express.static(__dirname + '/../public'))
-
-app.post('/users', async (req, res) => {
-  const db = await connect();
-  const { name, email } = req.body;
-
-  const result = await db.run('INSERT INTO users (name, email) VALUES (?, ?)', [name, email]);
-  const user = await db.get('SELECT * FROM users WHERE id = ?', [result.lastID]);
-
-  res.json(user);
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
-
-app.put('/users/:id', async (req, res) => {
-  const db = await connect();
-  const { name, email } = req.body;
-  const { id } = req.params;
-
-  await db.run('UPDATE users SET name = ?, email = ? WHERE id = ?', [name, email, id]);
-  const user = await db.get('SELECT * FROM users WHERE id = ?', [id]);
-
-  res.json(user);
-});
-
-app.delete('/users/:id', async (req, res) => {
-  const db = await connect();
-  const { id } = req.params;
-
-  await db.run('DELETE FROM users WHERE id = ?', [id]);
-
-  res.json({ message: 'User deleted' });
-});
 ```
 
 ## Adicionando html estático
@@ -291,10 +263,7 @@ app.delete('/users/:id', async (req, res) => {
 </html>
 ```
 
-> *Rode `npm run dev` no terminal do VS Code caso o servidor esteja fechado. Para fechar o servidor, basta apertar `Ctrl + C` enquanto o terminal estiver selecionado.*
-
+- Copie e cole o seguinte comando ao terminal do VS Code: `npm run dev`.
+- Isto irá ligar o servidor na porta 3333, e uma mensagem deve aparecer no terminal falando `Server running on port 3333`.
 - Abra o link `http://localhost:3333` no navegador que desejar.
 - Agora você pode adicionar, editar, e remover contas de usuários utilizando seu navegador.
-
->>>>>>>> # PARABENS!!!!!!! VOCE TERMINOU O TUTORIAL
-
