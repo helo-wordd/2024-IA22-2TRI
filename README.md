@@ -18,6 +18,8 @@ npx tsc --init
 mkdir src
 ```
 
+> *Espere por alguns segundos. Isto pode demorar um pouco.*
+
 - Após isso, selecione a pasta src, clique com o botão direito do mouse e selecione `New File` ou `Novo Arquivo`, que deve ser a primeira opção.
 - Nomeie este arquivo como `app.ts`
 
