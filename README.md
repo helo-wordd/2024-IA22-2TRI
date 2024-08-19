@@ -23,14 +23,17 @@ mkdir src
 >> *Para copiar, pode-se utilizar a combinação de teclas `Ctrl + C`, e para colar, pode-se utilizar `Ctrl + V`.*
 >> *Caso esteja usando um sistema operacional baseado em linux, você provavelmente terá que utilizar `Ctrl + Shift + C` e `Ctrl + Shift + V` para, respectivamente, copiar e colar coisas em um terminal.*
 
-- Após isso, selecione a pasta src, clique com o botão direito do mouse e selecione `New File` ou `Novo Arquivo`, que deve ser a primeira opção.
-- Nomeie este arquivo como `app.ts`
+- Selecione a pasta `src`, clique com o botão direito do mouse e selecione `New File` ou `Novo Arquivo`, que deve ser a primeira opção.
+- Nomeie este arquivo como `app.ts`.
 
 ## Configurando `tsconfig.json`
 
-- Abra o arquivo tsconfig.json, que os comandos npm devem ter criado.
-- Apague o texto neste arquivo (Ctrl + A; Delete)
-- Copie a seguinte caixa de texto e cole no arquivo `tsconfig.json`
+- Abra o arquivo `tsconfig.json`, que os comandos npm devem ter criado.
+- Apague o texto neste arquivo.
+
+>> *Para apagar tudo em um arquivo, pode-se utilzar `Ctrl + A`, que selecionará tudo, e `Delete`, que apagará tudo que está selecionado.*
+
+- Copie a seguinte caixa de texto e cole-a no arquivo `tsconfig.json`.
 
 ```json
 {
@@ -55,6 +58,8 @@ mkdir src
   "dev": "npx nodemon src/app.ts"
 ```
 
+>> *Caso esteja com dificuldade em encontrar algo em um arquivo, pressione `Ctrl + F` e digite o que deseja encontrar.*
+
 ## Criando o Arquivo Inicial do Servidor
 
 - Copie e cole a seguinte caixa de texto dentro de `app.ts`:
@@ -70,7 +75,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Helo Wordd');
 });
 
 app.listen(port, () => {
@@ -87,12 +92,12 @@ npm run dev
 ```
 
 - Se tudo ocorrer bem, você verá a mensagem `Server running on port 3333` no terminal.
-- Abra o navegador que desejar e acesse o link `http://localhost:3333`, você deve ver a mensagem `Hello World` no canto superior esquerdo da tela.
+- Abra o navegador que desejar e acesse o link `http://localhost:3333`, você deve ver a mensagem `Helo Wordd` no canto superior esquerdo da tela.
 
 ## Configurando o Banco de Dados
 
 - Crie um arquivo chamado `database.ts` dentro da pasta `src`.
-- Copie o seguinte código e cole dentro do arquivo `database.ts`:
+- Copie o seguinte código e cole-o dentro do arquivo `database.ts`:
 
 ```typescript
 import { open, Database } from 'sqlite';
@@ -151,13 +156,7 @@ app.post('/users', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
-```
 
-## Editar e Remover Usuários
-
-- Copie e cole o seguinte código ao final do arquivo `app.ts`:
-
-```typescript
 app.put('/users/:id', async (req, res) => {
   const db = await connect();
   const { name, email } = req.body;
