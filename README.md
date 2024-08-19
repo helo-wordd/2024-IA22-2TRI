@@ -20,7 +20,8 @@ mkdir src
 
 > *Espere por alguns segundos. Isto pode demorar um pouco.*
 
->> *Para copiar, pode-se utilizar a combinação de teclas `Ctrl + C`, e para colar, pode-se utilizar `Ctrl + V`. Caso esteja usando um sistema operacional baseado em linux, você provavelmente terá que utilizar `Ctrl + Shift + C` e `Ctrl + Shift + V` para, respectivamente, copiar e colar coisas em um terminal.*
+>> *Para copiar, pode-se utilizar a combinação de teclas `Ctrl + C`, e para colar, pode-se utilizar `Ctrl + V`.*
+>> *Caso esteja usando um sistema operacional baseado em linux, você provavelmente terá que utilizar `Ctrl + Shift + C` e `Ctrl + Shift + V` para, respectivamente, copiar e colar coisas em um terminal.*
 
 - Após isso, selecione a pasta src, clique com o botão direito do mouse e selecione `New File` ou `Novo Arquivo`, que deve ser a primeira opção.
 - Nomeie este arquivo como `app.ts`
