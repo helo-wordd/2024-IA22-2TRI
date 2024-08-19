@@ -5,7 +5,7 @@
 - Instale `nodejs` em seu computador. Se já instalou isto ou estiver em um dos computadores de um laboratório de informática do IFC, ignore este passo.
 - Abra o terminal do VS Code.
 
-> *Geralmente, o terminal pode ser aberto pressionando `Ctrl + [tecla abaixo do esc]`. Se isto não funcinar, vá até o menu no canto superior esquerdo, clique em terminal (penúltima opção da esquerda para a direita) e abra um novo terminal.*
+>> *Geralmente, o terminal pode ser aberto pressionando `Ctrl + [tecla abaixo do esc]`. Se isto não funcinar, vá até o menu no canto superior esquerdo, clique em terminal (penúltima opção da esquerda para a direita) e abra um novo terminal.*
 
 - Copie a caixa de texto abaixo utilizando o botão no canto superior direito da caixa. (o botão é similar a 2 quadrados)
 - Cole (Ctrl+V ou Ctrl+Shift+V) o texto no terminal que apareceu na parte inferior da janela do VS Code e aperte enter. Isso irá executar os comandos, iniciando o npm, e instalando recursos necessários.
@@ -19,6 +19,8 @@ mkdir src
 ```
 
 > *Espere por alguns segundos. Isto pode demorar um pouco.*
+
+>> *Para copiar, pode-se utilizar a combinação de teclas `Ctrl + C`, e para colar, pode-se utilizar `Ctrl + V`. Caso esteja usando um sistema operacional baseado em linux, você provavelmente terá que utilizar `Ctrl + Shift + C` e `Ctrl + Shift + V` para, respectivamente, copiar e colar coisas em um terminal.*
 
 - Após isso, selecione a pasta src, clique com o botão direito do mouse e selecione `New File` ou `Novo Arquivo`, que deve ser a primeira opção.
 - Nomeie este arquivo como `app.ts`
